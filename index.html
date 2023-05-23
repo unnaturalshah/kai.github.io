@@ -1,9 +1,51 @@
 <html>
   <head>
     <title>My Website</title>
+    <title>Color Picker</title>
+    <style>
+      body {
+        background-color: #ffffff;
+      }
+      .color-preview {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #000000;
+        margin-bottom: 10px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello!</h1>
+    <h1>Color Picker</h1>
+    <div>
+      <label for="color-input">Select a color:</label>
+      <input type="color" id="color-input">
+    </div>
+
+    <div>
+      <label for="custom-color-input">Enter a custom color:</label>
+      <input type="text" id="custom-color-input" placeholder="#RRGGBB">
+    </div>
+
+    <div>
+      <h2>Preview:</h2>
+      <div class="color-preview" id="color-preview"></div>
+    </div>
+
+    <script>
+      const colorInput = document.getElementById('color-input');
+      const customColorInput = document.getElementById('custom-color-input');
+      const colorPreview = document.getElementById('color-preview');
+
+      colorInput.addEventListener('input', function () {
+        const selectedColor = colorInput.value;
+        colorPreview.style.backgroundColor = selectedColor;
+      });
+
+      customColorInput.addEventListener('input', function () {
+        const customColor = customColorInput.value;
+        colorPreview.style.backgroundColor = customColor;
+      });
+    </script>
 
     <div>
       <button onclick="changeLanguage('english')">English</button>
