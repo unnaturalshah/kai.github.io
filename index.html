@@ -49,32 +49,6 @@
 
     <div>
       <button onclick="changeLanguage('english')">English</button>
-      <button onclick="changeLanguage('spanish')">Spanish</button>
-      <button onclick="changeLanguage('french')">French</button>
     </div>
-
-    <p id="language-text">Default language text</p>
-
-    <script>
-      function changeLanguage(language) {
-        var languageText = document.getElementById('language-text');
-
-        switch (language) {
-          case 'english':
-            languageText.textContent = 'Hello!';
-            break;
-          case 'spanish':
-            languageText.textContent = '¡Hola!';
-            break;
-          case 'french':
-            languageText.textContent = 'Bonjour!';
-            break;
-          default:
-            languageText.textContent = 'Default language text';
-            break;
-        }
-      }
-    </script>
   </body>
 </html>
-
