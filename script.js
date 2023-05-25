@@ -3,40 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 //Color
-var colorInput = document.getElementById('color-input');
-var colorPreview = document.getElementById('color-preview');
+const colorPicker = document.getElementById('color-picker');
+const body = document.body;
 
-// Update color preview based on selected color
-  function updateColorPreview() {
-    var selectedColor = colorInput.value;
-    document.body.style.backgroundColor = selectedColor;
-    colorPreview.style.backgroundColor = selectedColor;
-  }
-
-// Event listener for color input
- // colorInput.addEventListener('change', function() {
- //   var selectedColor = colorInput.value;
- //   document.body.style.backgroundColor = selectedColor;
- //   colorPreview.style.backgroundColor = selectedColor;
- // });	
-
-  // Check if color preference is stored in localStorage
-  var storedColor = localStorage.getItem('colorPreference');
-  if (storedColor) {
-    colorInput.value = storedColor;
-	document.body.style.backgroundColor = storedColor;
-    updateColorPreview();
-  }
-
-  // Event listener for color input
-  colorInput.addEventListener('input', function() {
-    updateColorPreview();
-
-    // Store selected color in localStorage
-    var selectedColor = colorInput.value;
-	document.body.style.backgroundColor = storedColor;
-    localStorage.setItem('colorPreference', selectedColor);
-  });
+colorPicker.addEventListener('change', () => {
+  body.style.backgroundColor = colorPicker.value;
+});
 
 
   //initializing languages
