@@ -14,15 +14,16 @@ colorPicker.addEventListener('change', () => {
   body.style.backgroundColor = colorPicker.value;
 });
 
-// Add an event listener to the submit button
-submitBtn.addEventListener('click', function() {
-  // Get the selected color
-  var color = colorPicker.value;
+// Check if the selected option is stored in localStorage
+  const selectedOption = localStorage.getItem('selectedOption');
+  const lastActionTimestamp = localStorage.getItem('lastActionTimestamp');
+  if (selectedOption) {
+    document.getElementById('option-select').value = selectedOption;
+  }
+  if (lastActionTimestamp) {
+    document.getElementById('last-action').textContent = `Last action: ${lastActionTimestamp}`;
+  }
   
-  // Store the color preference in localStorage
-  localStorage.setItem('colorPreference', color);
-});
-
 // Check if a color preference exists in localStorage
 if (localStorage.getItem('colorPreference')) {
   // Retrieve the color preference from localStorage
@@ -31,66 +32,31 @@ if (localStorage.getItem('colorPreference')) {
   // Set the color picker value to the stored color preference
   colorPicker.value = storedColor;
 }
-  //initializing languages
-  var languages = {
-    ':)': 'Leave me alone - all is well!:',
-    ':(': 'Vent Mode - Listen and hug!:',
-    ':|': 'Advise Time - help me!:',
-    // Add more language codes and names as needed
-  };
 
-  var languageSelect = document.getElementById('language-select');
-  var languageText = document.getElementById('language-text');
+// Add an event listener to the submit button
+submitBtn.addEventListener('click', function() {
+  // Get the selected color
+  var color = colorPicker.value;
+  // Get the selected option
+    const selectedOption = document.getElementById('option-select').value;
+  // Store the color preference in localStorage
+  localStorage.setItem('colorPreference', color);
+  // Store the selected option in localStorage
+    localStorage.setItem('selectedOption', selectedOption);
+ 
+ // Get the current date and time
+    const now = new Date();
+    const lastActionTimestamp = now.toLocaleString();
 
-  // Update language text based on stored or selected language
-  updateLanguageText();
+    // Store the last action timestamp in localStorage
+    localStorage.setItem('lastActionTimestamp', lastActionTimestamp);
 
-  // Event listener for language select
-  languageSelect.addEventListener('change', function() {
-    var selectedLanguage = languageSelect.value;
-    localStorage.setItem('languagePreference', selectedLanguage);
-    updateLanguageText();
-  });
+    // Update the last action display
+    document.getElementById('last-action').textContent = `Last action: ${lastActionTimestamp}`;	
+	
+// For example, display a confirmation message
+//    alert(`Option selected: ${selectedOption}\nLast action: ${lastActionTimestamp}`);
+});
 
-  function updateLanguageText() {
-    var selectedLanguage = languageSelect.value;
-    var translations = {
-      en: ':) Leave me alone - all is well!:',
-      fr: ':( Vent Mode - Listen and hug!:',
-      es: ':| Advise Time - help me!:'
-      // Add more translations for each language as needed
-    };
-
-    // Check if translation exists in the translations object
-    if (translations[selectedLanguage]) {
-      languageText.textContent = translations[selectedLanguage];
-    } else {
-      // If translation is not available, use the default text
-      languageText.textContent = translations['en'];
-    }
-
-    // Translate text if the selected language is not English
-    if (selectedLanguage !== 'en') {
-      translateText(languageText.textContent, selectedLanguage, function(translation) {
-        languageText.textContent = translation;
-      });
-    }
-  }
-
-  function translateText(text, targetLanguage, callback) {
-    var apiKey = 'YOUR_API_KEY'; // Replace with your Microsoft Translator Text API key
-
-    Microsoft.Translator.translate({
-      text: text,
-      to: targetLanguage,
-      api_key: apiKey
-    }, function(result) {
-      if (result && result.translation) {
-        callback(result.translation);
-      } else {
-        console.error('Translation error:', result);
-        callback(text);
-      }
-    });
-  }
+ 
 });
