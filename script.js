@@ -1,7 +1,6 @@
 /*script.js*/
-
-
 document.addEventListener('DOMContentLoaded', function() {
+
 
 //Color
 var colorInput = document.getElementById('color-input');
@@ -25,6 +24,7 @@ var colorPreview = document.getElementById('color-preview');
   var storedColor = localStorage.getItem('colorPreference');
   if (storedColor) {
     colorInput.value = storedColor;
+	document.body.style.backgroundColor = storedColor;
     updateColorPreview();
   }
 
@@ -34,6 +34,7 @@ var colorPreview = document.getElementById('color-preview');
 
     // Store selected color in localStorage
     var selectedColor = colorInput.value;
+	document.body.style.backgroundColor = storedColor;
     localStorage.setItem('colorPreference', selectedColor);
   });
 
@@ -131,4 +132,3 @@ var colorPreview = document.getElementById('color-preview');
     });
   }
 });
-
