@@ -31,22 +31,11 @@ if (localStorage.getItem('colorPreference')) {
   // Set the color picker value to the stored color preference
   colorPicker.value = storedColor;
 }
-
-
   //initializing languages
   var languages = {
-    'en': 'English',
-    'es': 'Spanish',
-    'fr': 'French',
-    'de': 'German',
-    'gu': 'Gujarati',
-    'hi': 'Hindi',
-    'it': 'Italian',
-    'ja': 'Japanese',
-    'ko': 'Korean',
-    'pt': 'Portuguese',
-    'ru': 'Russian',
-    'zh': 'Chinese',
+    ':)': 'Leave me alone - all is well!:',
+    ':(': 'Vent Mode - Listen and hug!:',
+    ':|': 'Advise Time - help me!:',
     // Add more language codes and names as needed
   };
 
@@ -66,9 +55,9 @@ if (localStorage.getItem('colorPreference')) {
   function updateLanguageText() {
     var selectedLanguage = languageSelect.value;
     var translations = {
-      en: 'Default language text',
-      fr: 'Texte par défaut',
-      es: 'Texto predeterminado'
+      en: ':) Leave me alone - all is well!:',
+      fr: ':( Vent Mode - Listen and hug!:',
+      es: ':| Advise Time - help me!:'
       // Add more translations for each language as needed
     };
 
