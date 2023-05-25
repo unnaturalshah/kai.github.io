@@ -58,5 +58,33 @@ submitBtn.addEventListener('click', function() {
 //    alert(`Option selected: ${selectedOption}\nLast action: ${lastActionTimestamp}`);
 });
 
+// Function to analyze color sentiment based on selected color
+  function analyzeColorSentiment(color) {
+    // Perform sentiment analysis using the sentiment analysis library
+    var sentiment = Sentiment(color).score;
+    return sentiment;
+  }
+
+  // Function to provide user insights based on sentiment score
+  function provideUserInsights(sentiment) {
+    // Customize user insights based on sentiment score
+    if (sentiment > 0) {
+      return "You selected a color associated with positive sentiment!";
+    } else if (sentiment < 0) {
+      return "You selected a color associated with negative sentiment.";
+    } else {
+      return "The sentiment associated with the selected color is neutral.";
+    }
+  }
+
+  // Event listener for color picker change
+  $('#color-picker').change(function() {
+    var selectedColor = $(this).val();
+    var colorSentiment = analyzeColorSentiment(selectedColor);
+    var userInsights = provideUserInsights(colorSentiment);
+
+    // Display the color sentiment and user insights
+    $('#color-sentiment').text('Color Sentiment: ' + colorSentiment);
+    $('#user-insights').text(userInsights);
  
 });
