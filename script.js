@@ -22,12 +22,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add more language codes and names as needed
   };
   
+ 
+  for (var langCode in languages) {
+    var option = document.createElement('option');
+    option.value = langCode;
+    option.textContent = languages[langCode];
+    languageSelect.appendChild(option);
+  }
+
+  languageSelect.addEventListener('change', function() {
+    var selectedLanguage = languageSelect.value;
+    languageText.textContent = languages[selectedLanguage];
+  });
+  
+  
   // Check if language preference is stored in localStorage
   var storedLanguage = localStorage.getItem('languagePreference');
-  if not(storedLanguage) {
-	  languageSelect.value = 'en';
-  }
-  else if (storedLanguage) {
+  if (storedLanguage) {
     languageSelect.value = storedLanguage;
   }
   
