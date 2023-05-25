@@ -17,8 +17,8 @@ colorPicker.addEventListener('change', () => {
     'es': 'Spanish',
     'fr': 'French',
     'de': 'German',
-	'gu': 'Gujarati',
-	'hi': 'Hindi',
+    'gu': 'Gujarati',
+    'hi': 'Hindi',
     'it': 'Italian',
     'ja': 'Japanese',
     'ko': 'Korean',
@@ -30,27 +30,6 @@ colorPicker.addEventListener('change', () => {
 
   var languageSelect = document.getElementById('language-select');
   var languageText = document.getElementById('language-text');
-
-  for (var langCode in languages) {
-    if (languages.hasOwnProperty(langCode)) {
-      var option = document.createElement('option');
-      option.value = langCode;
-      option.textContent = languages[langCode];
-      languageSelect.appendChild(option);
-    }
-  }
-
-  languageSelect.addEventListener('change', function() {
-    var selectedLanguage = languageSelect.value;
-    languageText.textContent = languages[selectedLanguage];
-  });
-
-  var storedLanguage = localStorage.getItem('languagePreference');
-  if (storedLanguage && languages.hasOwnProperty(storedLanguage)) {
-    languageSelect.value = storedLanguage;
-    languageText.textContent = languages[storedLanguage];
-  }
-
 
   // Update language text based on stored or selected language
   updateLanguageText();
