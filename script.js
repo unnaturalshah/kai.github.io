@@ -24,7 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Check if language preference is stored in localStorage
   var storedLanguage = localStorage.getItem('languagePreference');
-  if (storedLanguage) {
+  if not(storedLanguage) {
+	  languageSelect.value = 'en';
+  }
+  else if (storedLanguage) {
     languageSelect.value = storedLanguage;
   }
   
