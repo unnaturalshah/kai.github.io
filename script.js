@@ -2,13 +2,35 @@
 document.addEventListener('DOMContentLoaded', function() {
 
 
-//Color
+//Get the color picker element
 const colorPicker = document.getElementById('color-picker');
 const body = document.body;
+
+// Get the submit button element
+var submitBtn = document.getElementById('submit-btn');
+
 
 colorPicker.addEventListener('change', () => {
   body.style.backgroundColor = colorPicker.value;
 });
+
+// Add an event listener to the submit button
+submitBtn.addEventListener('click', function() {
+  // Get the selected color
+  var color = colorPicker.value;
+  
+  // Store the color preference in localStorage
+  localStorage.setItem('colorPreference', color);
+});
+
+// Check if a color preference exists in localStorage
+if (localStorage.getItem('colorPreference')) {
+  // Retrieve the color preference from localStorage
+  var storedColor = localStorage.getItem('colorPreference');
+  
+  // Set the color picker value to the stored color preference
+  colorPicker.value = storedColor;
+}
 
 
   //initializing languages
