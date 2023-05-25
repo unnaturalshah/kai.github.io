@@ -1,9 +1,6 @@
 /*script.js*/
 document.addEventListener('DOMContentLoaded', function() {
-  var languageText = document.getElementById('language-text');
-  var languageSelect = document.getElementById('language-select');
-  var colorInput = document.getElementById('color-input');
-  var colorPreview = document.getElementById('color-preview');
+
 
   //initializing languages
   var languages = {
@@ -21,27 +18,30 @@ document.addEventListener('DOMContentLoaded', function() {
     'zh': 'Chinese',
     // Add more language codes and names as needed
   };
-  
- 
+
+  var languageSelect = document.getElementById('language-select');
+  var languageText = document.getElementById('language-text');
+
   for (var langCode in languages) {
-    var option = document.createElement('option');
-    option.value = langCode;
-    option.textContent = languages[langCode];
-    languageSelect.appendChild(option);
+    if (languages.hasOwnProperty(langCode)) {
+      var option = document.createElement('option');
+      option.value = langCode;
+      option.textContent = languages[langCode];
+      languageSelect.appendChild(option);
+    }
   }
 
   languageSelect.addEventListener('change', function() {
     var selectedLanguage = languageSelect.value;
     languageText.textContent = languages[selectedLanguage];
   });
-  
-  
-  // Check if language preference is stored in localStorage
+
   var storedLanguage = localStorage.getItem('languagePreference');
-  if (storedLanguage) {
+  if (storedLanguage && languages.hasOwnProperty(storedLanguage)) {
     languageSelect.value = storedLanguage;
+    languageText.textContent = languages[storedLanguage];
   }
-  
+
 
   // Update language text based on stored or selected language
   updateLanguageText();
