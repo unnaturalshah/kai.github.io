@@ -1,21 +1,6 @@
 /*script.js*/
 document.addEventListener('DOMContentLoaded', function() {
 
-//Last Status
-const lastUpdatedElement = document.getElementById('last-updated');
-const fileUrl = 'index.html'; // Replace with the URL or path of the file you want to track
-
-fetch(fileUrl)
-	.then(response => response.headers.get('last-modified'))
-	.then(lastModified => {
-		const formattedDate = new Date(lastModified).toLocaleString();
-		lastUpdatedElement.textContent = `Last Updated: ${formattedDate}`;
-	})
-	.catch(error => {
-		console.error('Error retrieving last updated status:', error);
-		lastUpdatedElement.textContent = 'Unable to fetch last updated status.';
-	});
-
 //Color
 var colorInput = document.getElementById('color-input');
 var colorPreview = document.getElementById('color-preview');
@@ -143,4 +128,21 @@ var colorPreview = document.getElementById('color-preview');
       }
     });
   }
+	
+
+//Last Status
+const lastUpdatedElement = document.getElementById('last-updated');
+const fileUrl = 'index.html'; // Replace with the URL or path of the file you want to track
+
+fetch(fileUrl)
+	.then(response => response.headers.get('last-modified'))
+	.then(lastModified => {
+		const formattedDate = new Date(lastModified).toLocaleString();
+		lastUpdatedElement.textContent = `Last Updated: ${formattedDate}`;
+	})
+	.catch(error => {
+		console.error('Error retrieving last updated status:', error);
+		lastUpdatedElement.textContent = 'Unable to fetch last updated status.';
+	});
+
 });
